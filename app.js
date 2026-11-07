@@ -112,12 +112,16 @@ app.all("/{*splat}", (req, res, next)=>{
   next(new ExpressError(404, "page not found!"));
 });
 
-app.use((err, req, res, next) => {
-  let { statusCode = 500, message = "Something went wrong!" } = err; 
-  res.status(statusCode).render("error.ejs", {message});
-  // res.status(statuscode).send(message);
-});
+app.use((req, res, next)=>{
+  console.log("CURRUSER MIDDLEWARE RUNNING");
+  console.log("Current User:", req.user);
 
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  res.locals.currUser = req.user || null;
+
+  next();
+});
 
 const PORT = process.env.PORT || 8080;
 

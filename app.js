@@ -112,10 +112,6 @@ app.get("/", (req, res) => {
 });
 
 
-app.all("/{*splat}", (req, res, next)=>{
-  next(new ExpressError(404, "page not found!"));
-});
-
 app.use((req, res, next)=>{
   console.log("CURRUSER MIDDLEWARE RUNNING");
   console.log("Current User:", req.user);

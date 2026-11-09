@@ -130,3 +130,9 @@ body {
   height: 400px;
   width: 80vh; 
 }
+
+.welcome{
+  font-size: large;
+  font-weight: 600;
+  /* color: #fe424d; */
+}
